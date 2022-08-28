@@ -15,6 +15,7 @@ import {divisionData} from "../data/divisiondata";
 import {SearchBar} from "../components/Reuse/Reuse";
 import Tab from "../components/Tab";
 import {scroolTabData} from "../data/TabData";
+import TabItemComp from "../components/TabItemComp";
 
 const Home = () => {
 	return (
@@ -28,9 +29,12 @@ const Home = () => {
 				<View style={{marginVertical: 8, marginBottom: 12}}>
 					<SearchBar />
 				</View>
-				<Text style={styles.divisionText}>Explore Cities</Text>
+				<Text style={[styles.divisionText, {marginVertical: 5}]}>
+					Explore Cities
+				</Text>
 				<View>
 					<Tab data={scroolTabData} />
+					<TabItemComp data={divisionData} />
 				</View>
 			</ScrollView>
 			{/* footer */}
@@ -46,7 +50,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	mainContainer: {
-		flex: 1,
 		backgroundColor: COLORS.deepGray,
 		paddingHorizontal: 15,
 		paddingVertical: 10,
@@ -55,5 +58,6 @@ const styles = StyleSheet.create({
 		fontSize: 17,
 		fontWeight: "700",
 		letterSpacing: 0.7,
+		color: COLORS.darkBlue,
 	},
 });

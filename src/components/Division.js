@@ -54,10 +54,11 @@ const SingleDivision = ({value}) => (
 const styles = StyleSheet.create({
 	root: {
 		paddingVertical: 6,
+		marginBottom: -17,
 	},
 	SingleDivisionWrapper: {
-		width: 120,
-		height: 120,
+		width: 100,
+		height: 100,
 		marginRight: 8,
 	},
 	imgStyle: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: COLORS.white,
-		fontSize: 14,
+		fontSize: 12,
 		fontWeight: "bold",
 		maxWidth: "90%",
 		letterSpacing: 0.7,
@@ -86,17 +87,11 @@ const styles = StyleSheet.create({
 		marginLeft: 15,
 	},
 	moreViewStyles: {
-		width: 45,
-		height: 45,
+		width: 40,
+		height: 40,
 		backgroundColor: COLORS.darkBlue,
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 100 / 2,
-	},
-	plusText: {
-		fontSize: 30,
-		fontWeight: "bold",
-		marginLeft: 1,
-		color: COLORS.white,
 	},
 });

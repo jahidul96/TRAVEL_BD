@@ -14,25 +14,35 @@ const Tab = ({data}) => {
 		setSelectedTab(t);
 	};
 	return (
-		<ScrollView
-			horizontal
-			contentContainerStyle={styles.root}
-			showsHorizontalScrollIndicator={false}
-		>
-			{data.map((val) => (
-				<TouchableOpacity
-					key={val.id}
-					style={[
-						styles.tabContainer,
-						selectedTab == val.title &&
-							styles.tabContainerExtraStyle,
-					]}
-					onPress={() => selectTab(val.title)}
-				>
-					<Text style={styles.title}>{val.title}</Text>
-				</TouchableOpacity>
-			))}
-		</ScrollView>
+		<>
+			<ScrollView
+				horizontal
+				contentContainerStyle={styles.root}
+				showsHorizontalScrollIndicator={false}
+			>
+				{data.map((val) => (
+					<TouchableOpacity
+						key={val.id}
+						style={[
+							styles.tabContainer,
+							selectedTab == val.title &&
+								styles.tabContainerExtraStyle,
+						]}
+						onPress={() => selectTab(val.title)}
+					>
+						<Text
+							style={[
+								styles.title,
+								selectedTab == val.title &&
+									styles.titleExtraStyle,
+							]}
+						>
+							{val.title}
+						</Text>
+					</TouchableOpacity>
+				))}
+			</ScrollView>
+		</>
 	);
 };
 
@@ -40,11 +50,13 @@ export default Tab;
 
 const styles = StyleSheet.create({
 	root: {
-		paddingVertical: 10,
+		paddingTop: 10,
+
+		paddingBottom: 5,
 	},
 	tabContainer: {
 		marginRight: 30,
-		height: 35,
+		height: 32,
 	},
 	title: {
 		fontWeight: "bold",
@@ -53,6 +65,9 @@ const styles = StyleSheet.create({
 	},
 	tabContainerExtraStyle: {
 		borderBottomColor: COLORS.darkBlue,
-		borderBottomWidth: 5,
+		borderBottomWidth: 3,
+	},
+	titleExtraStyle: {
+		color: COLORS.darkBlue,
 	},
 });
