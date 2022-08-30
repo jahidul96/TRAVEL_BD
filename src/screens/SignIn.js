@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, StatusBar, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {ButtonComp} from "../components/Reuse/Reuse";
 import {COLORS} from "../COLOR/COLORS";

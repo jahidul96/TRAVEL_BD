@@ -10,8 +10,14 @@ import React from "react";
 import {COLORS} from "../COLOR/COLORS";
 import LocationIcon from "react-native-vector-icons/Entypo";
 import StarIcon from "react-native-vector-icons/AntDesign";
+import {MoreBtnComp} from "./Reuse/Reuse";
+import {useNavigation} from "@react-navigation/native";
 
-const TabItemComp = ({data}) => {
+const TabContent = ({data, more}) => {
+	const navigation = useNavigation();
+	const seeDeatils = (item) => {
+		navigation.navigate("details", item);
+	};
 	return (
 		<ScrollView
 			contentContainerStyle={styles.root}
@@ -19,33 +25,41 @@ const TabItemComp = ({data}) => {
 			showsHorizontalScrollIndicator={false}
 		>
 			{data.map((val) => (
-				<Places key={val.id} value={val} />
+				<Places key={val.id} value={val} seeDeatils={seeDeatils} />
 			))}
+
+			{more && (
+				<MoreBtnComp
+					extraStyle={styles.moreBtnExtraStyle}
+					change={true}
+				/>
+			)}
 		</ScrollView>
 	);
 };
 
-export default TabItemComp;
+export default TabContent;
 
-const Places = ({value}) => (
+const Places = ({value, seeDeatils}) => (
 	<TouchableOpacity
 		style={[styles.itemWrapper, value.id == 1 && {marginLeft: 2}]}
+		onPress={() => seeDeatils(value)}
 	>
 		<View style={styles.imgWrapper}>
 			<Image source={{uri: value.img}} style={styles.imgStyle} />
 		</View>
 
 		<View style={styles.detailsWrapper}>
-			<Text style={[styles.text, {color: "#000"}]}>{value.title}</Text>
+			<Text style={[styles.text, styles.title]}>{value.title}</Text>
 			<View style={styles.footerWrapper}>
 				<LocationIcon
 					name="location-pin"
-					size={18}
+					size={16}
 					color={COLORS.darkBlue}
 				/>
 				<Text style={styles.text}>{value.text}</Text>
 				<View style={styles.ratingWrapper}>
-					<StarIcon name="star" size={14} color="orange" />
+					<StarIcon name="star" size={12} color="orange" />
 					<Text style={[styles.text, {marginLeft: 5}]}>
 						{value.rating}
 					</Text>
@@ -92,9 +106,20 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginLeft: 10,
 	},
+	title: {
+		color: "#000",
+		fontSize: 14,
+		letterSpacing: 1,
+		marginBottom: 2,
+	},
 	text: {
 		fontWeight: "bold",
 		letterSpacing: 0.7,
 		color: COLORS.gray,
+		fontSize: 11,
+	},
+
+	moreBtnExtraStyle: {
+		height: 180,
 	},
 });

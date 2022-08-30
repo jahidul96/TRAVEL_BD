@@ -9,6 +9,8 @@ import {
 import React from "react";
 import {COLORS} from "../COLOR/COLORS";
 import PlusIcon from "react-native-vector-icons/FontAwesome";
+import {reuseableStyle} from "./Reuse/ReuseStyle";
+import {MoreBtnComp} from "./Reuse/Reuse";
 
 const Division = ({data}) => {
 	return (
@@ -21,16 +23,7 @@ const Division = ({data}) => {
 				<SingleDivision value={val} key={val.id} />
 			))}
 
-			<View style={styles.moreViewWrapper}>
-				<TouchableOpacity
-					style={[
-						styles.SingleDivisionWrapper,
-						styles.moreViewStyles,
-					]}
-				>
-					<PlusIcon name="plus" color={COLORS.white} size={20} />
-				</TouchableOpacity>
-			</View>
+			<MoreBtnComp />
 		</ScrollView>
 	);
 };
@@ -38,7 +31,12 @@ const Division = ({data}) => {
 export default Division;
 
 const SingleDivision = ({value}) => (
-	<TouchableOpacity style={styles.SingleDivisionWrapper}>
+	<TouchableOpacity
+		style={[
+			reuseableStyle.SingleDivisionWrapper,
+			value.id == 1 && {marginLeft: 2},
+		]}
+	>
 		<ImageBackground
 			source={{uri: value.img}}
 			style={styles.imgStyle}
@@ -53,13 +51,7 @@ const SingleDivision = ({value}) => (
 
 const styles = StyleSheet.create({
 	root: {
-		paddingVertical: 6,
-		marginBottom: -17,
-	},
-	SingleDivisionWrapper: {
-		width: 100,
-		height: 100,
-		marginRight: 8,
+		paddingVertical: 10,
 	},
 	imgStyle: {
 		width: "100%",
@@ -79,19 +71,5 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		maxWidth: "90%",
 		letterSpacing: 0.7,
-	},
-	moreViewWrapper: {
-		width: 60,
-		height: 120,
-		justifyContent: "center",
-		marginLeft: 15,
-	},
-	moreViewStyles: {
-		width: 40,
-		height: 40,
-		backgroundColor: COLORS.darkBlue,
-		justifyContent: "center",
-		alignItems: "center",
-		borderRadius: 100 / 2,
 	},
 });

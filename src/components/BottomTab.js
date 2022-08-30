@@ -1,59 +1,75 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {COLORS} from "../COLOR/COLORS";
 import HomeIcon from "react-native-vector-icons/Entypo";
 import SearchIcon from "react-native-vector-icons/FontAwesome";
 import FvrtIcon from "react-native-vector-icons/FontAwesome";
 import PersonIcon from "react-native-vector-icons/Ionicons";
+import PlusIcon from "react-native-vector-icons/FontAwesome";
+import {useNavigation} from "@react-navigation/native";
 
 const data = [
 	{
 		id: 1,
 		icon: <HomeIcon name="home" size={25} />,
-		title: "home",
+		screenName: "home",
 	},
 	{
 		id: 2,
 		icon: <SearchIcon name="search" size={25} />,
-		title: "search",
+		screenName: "yourSearch",
 	},
 	{
 		id: 3,
-		icon: <FvrtIcon name="bookmark" size={25} />,
-		title: "bookmark",
+		icon: <PlusIcon name="plus" size={20} />,
+		screenName: "post",
 	},
 	{
 		id: 4,
+		icon: <FvrtIcon name="bookmark" size={25} />,
+		screenName: "favorite",
+	},
+	{
+		id: 5,
 		icon: <PersonIcon name="md-person-circle-outline" size={25} />,
-		title: "person",
+		screenName: "profile",
 	},
 ];
 
-const BottomTab = () => {
-	const [selectedPage, setSelectedPage] = useState("home");
+const BottomTab = ({selectedPage, setSelectedPage}) => {
+	// const [selectedPage, setSelectedPage] = useState("");
+	const navigation = useNavigation();
 
-	const goToPage = (t) => {
-		setSelectedPage(t);
+	const goToPage = (val) => {
+		navigation.navigate(val);
 	};
+
 	return (
 		<View style={styles.container}>
 			{data.map((value) => (
 				<TouchableOpacity
 					activeOpacity={0.7}
-					style={
-						selectedPage == value.title
-							? [styles.iconWrapperExtraStyle, styles.iconWrapper]
-							: styles.iconWrapper
-					}
+					style={[
+						selectedPage == value.screenName
+							? styles.iconWrapperExtraStyle
+							: value.screenName == "post"
+							? [styles.iconWrapper, styles.postScreenStyle]
+							: styles.iconWrapper,
+					]}
 					key={value.id}
-					onPress={() => goToPage(value.title)}
+					onPress={() => {
+						goToPage(value.screenName);
+						setSelectedPage(value.screenName);
+					}}
 				>
 					<Text
-						style={
-							selectedPage == value.title
+						style={[
+							selectedPage == value.screenName
 								? {color: COLORS.white}
-								: {color: COLORS.darkBlue}
-						}
+								: {
+										color: COLORS.darkBlue,
+								  },
+						]}
 					>
 						{value.icon}
 					</Text>
@@ -83,11 +99,16 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	iconWrapperExtraStyle: {
-		backgroundColor: "red",
+		backgroundColor: COLORS.darkBlue,
 		width: 40,
 		height: 40,
 		justifyContent: "center",
 		alignItems: "center",
+		borderRadius: 100 / 2,
+	},
+	postScreenStyle: {
+		backgroundColor: COLORS.white,
+		elevation: 2,
 		borderRadius: 100 / 2,
 	},
 });
