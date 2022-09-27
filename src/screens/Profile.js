@@ -17,8 +17,8 @@ const userProfileExtraStyle = {
 };
 
 const extraWrapperStyle = {
-	width: 80,
-	height: 80,
+	width: 65,
+	height: 65,
 	borderRadius: 100 / 2,
 	marginBottom: 10,
 };
@@ -29,7 +29,7 @@ const postUserStyle = {
 };
 
 const extraTextStyle = {
-	fontSize: 18,
+	fontSize: 17,
 };
 
 const Profile = ({navigation}) => {
@@ -72,7 +72,7 @@ const Profile = ({navigation}) => {
 	);
 };
 
-const Counter = ({total, text, first}) => (
+const Counter = ({total, text, first, likes}) => (
 	<View
 		style={[
 			styles.counterWrapper,
@@ -138,12 +138,11 @@ const styles = StyleSheet.create({
 	},
 	counterWrapper: {
 		width: Width / 3.5,
-		height: Height / 10,
+		height: Height / 12,
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: COLORS.lightGary,
 		elevation: 2,
-		paddingHorizontal: 5,
 		borderRadius: 10,
 		marginRight: 5,
 	},
@@ -160,6 +159,7 @@ const styles = StyleSheet.create({
 		marginTop: 15,
 		marginBottom: 5,
 		fontSize: 17,
+		textAlign: "center",
 	},
 	mypostContainer: {
 		marginTop: 10,

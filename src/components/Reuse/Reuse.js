@@ -69,6 +69,7 @@ export const MoreBtnComp = ({extraStyle, change}) => (
 				reuseableStyle.SingleDivisionWrapper,
 				reuseableStyle.moreViewStyles,
 			]}
+			activeOpacity={0.7}
 		>
 			<PlusIcon name="plus" color={COLORS.white} size={20} />
 		</TouchableOpacity>

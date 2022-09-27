@@ -36,6 +36,7 @@ const SingleDivision = ({value}) => (
 			reuseableStyle.SingleDivisionWrapper,
 			value.id == 1 && {marginLeft: 2},
 		]}
+		activeOpacity={0.7}
 	>
 		<ImageBackground
 			source={{uri: value.img}}
